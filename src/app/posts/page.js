@@ -1,7 +1,12 @@
+import Link from 'next/link';
 import React from 'react';
 
 const PostPage = async() => {
-    const res = await fetch("http://localhost:5000/posts");
+    const res = await fetch("http://localhost:5000/posts",{
+        next:{
+            revalidate:5,
+        },
+    });
     const posts = await res.json();
     return (
         <div className=' text-center w-full'>
@@ -16,7 +21,9 @@ const PostPage = async() => {
                                 <p>{post.description}</p>
                                 <p> Likes: {post.like_counts}</p>
                                 <div className="card-actions justify-end">
-                                <button className="btn btn-primary">See More</button>
+                                <Link href={`/posts/${post.id}`}>
+                                    <button className="btn btn-primary">See More</button>
+                                </Link>
                                 </div>
                             </div>
                             </div>
