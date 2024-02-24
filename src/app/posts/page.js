@@ -6,6 +6,7 @@ const PostPage = async() => {
         next:{
             revalidate:5,
         },
+        // cache:"no-store",
     });
     const posts = await res.json();
     return (
@@ -26,7 +27,7 @@ const PostPage = async() => {
                                 </Link>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     ))
                 }
 
